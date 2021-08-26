@@ -151,6 +151,7 @@ head(phylotypes)
 data <- cbind(dat, phylotypes$Phylotype)
 data
 
+write.csv(data, "Ralstonia_solanacearum_data_table2_2021fromR.csv")
 
 
 
