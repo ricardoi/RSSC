@@ -179,7 +179,8 @@ phylotypes$HC <- paste(phylotypes$County, phylotypes$Host, sep = "-")
 
 phylotable <- table(phylotypes$HC, phylotypes$Phylotype)
 cbind(phylotable, rowSums(phylotable))
-# write.csv(data, "Ralstonia_solanacearum_data_table2_2021fromR.csv")
+
+write.csv(phylotypes, "Ralstonia_solanacearum_data_table1_2021fromR.csv")
 
 
 
