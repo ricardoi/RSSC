@@ -16,13 +16,16 @@ library(bipartite)
 
 #---- Loading data
 
-dat <- read.csv("data/Ralstonia_solanacearum_data_table2_2021fromR.csv")
+dat <- read.csv("Ralstonia_solanacearum_data_table1_2021-fromR.csv")
 
+table(dat$Host, dat$Phylotype)
 
-totals <- table(dat$Host, dat$phylotypes.Phylotype)
-total <- rbind(totals, colSums(totals))
-sum(totals)
+totals <- table(dat$HC, dat$Phylotype)
+total <- cbind(totals, rowSums(totals))
 
+sum(total)
 
+#-----
 
+rbind(total, colSums(total))
 

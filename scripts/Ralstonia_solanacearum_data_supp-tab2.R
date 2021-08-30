@@ -21,44 +21,12 @@ metadata <- data.frame( County = c("Baringo", "Bomet", "Bungoma",
                                       "1700-2100", "1400-1700", "1800-2100",
                                       "2100-2400", "1700-1800"))
 
-hosts <- c(paste("Baringo", rep("potato", 13), sep = "_"),
-           paste("Baringo", rep("tomato", 2), sep = "_" ),
-           paste("Bomet", rep("potato", 59), sep = "_" ),
-           paste("Bungoma", rep("nightshade", 2), sep = "_" ),
-           paste("Bungoma", rep("potato", 40), sep = "_" ),
-           paste("Bungoma", rep("sodom apple", 2), sep = "_" ),
-           paste("Elgeyo-Marakwet", rep("potato", 15), sep = "_" ),
-           paste("Meru", rep("potato", 35), sep = "_" ),
-           paste("Nakuru", rep("potato", 103), sep = "_" ),
-           paste("Nandi", rep("nightshade", 2), sep = "_" ),
-           paste("Nandi", rep("pepper", 2), sep = "_" ),
-           paste("Nandi", rep("potato", 64), sep = "_" ),
-           paste("Narok", rep("potato", 43), sep = "_" ),
-           paste("Nyandarua", rep("potato", 93), sep = "_" ),
-           paste("Nyeri", rep("potato", 40), sep = "_" ),
-           paste("Nyeri", rep("potato", 2), sep = "_" ),
-           paste("Taita Taveta", rep("pepper", 3), sep = "_" ),
-           paste("Taita Taveta", rep("potato", 21), sep = "_" ),
-           paste("Taita Taveta", rep("tomato", 10), sep = "_" ),
-           paste("Trans-Nzoia", rep("potato", 20), sep = "_" ),
-           paste("Uasin Gishu", rep("potato", 59), sep = "_" ),
-           paste("Vihiga", rep("pepper", 3), sep = "_" ),
-           paste("Vihiga", rep("potato", 10), sep = "_" ),
-           paste("Vihiga", rep("tomato", 7), sep = "_" )
-  )
-
-hosts <- t(matrix(unlist(strsplit(hosts, "_")), 2))
-colnames(hosts) <- c("County", "Host")
-
-dat <- merge(metadata, hosts, by = "County")
-dim(dat)
-
-
+# Collected data
 phylotypes <- c(
   #Baringo
 #Potato
-  paste("Baringo", "potato", rep("phylotypeI", 9), sep = "_"),
-  paste("Baringo", "potato", rep("phylotypeII", 1), sep = "_"),
+  paste("Baringo", "potato", rep("phylotypeI", 1), sep = "_"),
+  paste("Baringo", "potato", rep("phylotypeII", 9), sep = "_"),
   paste("Baringo", "potato", rep("NC", 3), sep = "_"),
 #Tomato
   paste("Baringo", "tomato", rep("phylotypeI", 1), sep = "_"),
@@ -66,8 +34,8 @@ phylotypes <- c(
   paste("Baringo","tomato", rep("NC", 1), sep = "_"),
   #Bomet
 #Potato
-paste("Bomet", "potato", rep("phylotypeI", 50), sep = "_"),
-# paste("Bomet","potato", rep("phylotypeI", 0), sep = "_"),
+# paste("Bomet", "potato", rep("phylotypeI", 0), sep = "_"),
+paste("Bomet","potato", rep("phylotypeII", 50), sep = "_"),
 paste("Bomet","potato", rep("NC", 9), sep = "_"),
   #Bungoma
 #Nightshade
@@ -84,7 +52,7 @@ paste("Bungoma","sodom apple", rep("phylotypeII", 2), sep = "_"),
 #paste("Bungoma","sodom apple", rep("NC", 1), sep = "_"),
   #Elgeyo
 #Potato
-#paste("Elgeyo", "potato", rep("phylotypeI", 1), sep = "_"),
+#paste("Elgeyo", "potato", rep("phylotypeI", 0), sep = "_"),
 paste("Elgeyo","potato", rep("phylotypeII", 10), sep = "_"),
 paste("Elgeyo","potato", rep("NC", 5), sep = "_"),
   #Meru
@@ -126,8 +94,8 @@ paste("Nyandaru","potato", rep("NC", 9), sep = "_"),
 paste("Nyeri", "potato", rep("phylotypeII", 30), sep = "_"),
 paste("Nyeri", "potato", rep("NC", 10), sep = "_"),
 #tomato
-# paste("Nyeri", "tomato", rep("phylotypeI", 0), sep = "_"),
-paste("Nyeri", "tomato", rep("phylotypeII", 1), sep = "_"),
+paste("Nyeri", "tomato", rep("phylotypeI", 1), sep = "_"),
+# paste("Nyeri", "tomato", rep("phylotypeII", 0), sep = "_"),
 paste("Nyeri", "tomato", rep("NC", 1), sep = "_"),
   # Taita Taveta
 #pepper
@@ -180,7 +148,7 @@ phylotypes$HC <- paste(phylotypes$County, phylotypes$Host, sep = "-")
 phylotable <- table(phylotypes$HC, phylotypes$Phylotype)
 cbind(phylotable, rowSums(phylotable))
 
-write.csv(phylotypes, "Ralstonia_solanacearum_data_table1_2021fromR.csv")
+write.csv(phylotypes, "Ralstonia_solanacearum_data_table1_2021-fromR.csv")
 
 
 
@@ -218,3 +186,35 @@ byhost <- data.frame(sum(potato),
   sum(pepper)
   )
 byhost
+
+hosts <- c(paste("Baringo", rep("potato", 13), sep = "_"),
+           paste("Baringo", rep("tomato", 2), sep = "_" ),
+           paste("Bomet", rep("potato", 59), sep = "_" ),
+           paste("Bungoma", rep("nightshade", 2), sep = "_" ),
+           paste("Bungoma", rep("potato", 40), sep = "_" ),
+           paste("Bungoma", rep("sodom apple", 2), sep = "_" ),
+           paste("Elgeyo-Marakwet", rep("potato", 15), sep = "_" ),
+           paste("Meru", rep("potato", 35), sep = "_" ),
+           paste("Nakuru", rep("potato", 103), sep = "_" ),
+           paste("Nandi", rep("nightshade", 2), sep = "_" ),
+           paste("Nandi", rep("pepper", 2), sep = "_" ),
+           paste("Nandi", rep("potato", 64), sep = "_" ),
+           paste("Narok", rep("potato", 43), sep = "_" ),
+           paste("Nyandarua", rep("potato", 93), sep = "_" ),
+           paste("Nyeri", rep("potato", 40), sep = "_" ),
+           paste("Nyeri", rep("potato", 2), sep = "_" ),
+           paste("Taita Taveta", rep("pepper", 3), sep = "_" ),
+           paste("Taita Taveta", rep("potato", 21), sep = "_" ),
+           paste("Taita Taveta", rep("tomato", 10), sep = "_" ),
+           paste("Trans-Nzoia", rep("potato", 20), sep = "_" ),
+           paste("Uasin Gishu", rep("potato", 59), sep = "_" ),
+           paste("Vihiga", rep("pepper", 3), sep = "_" ),
+           paste("Vihiga", rep("potato", 10), sep = "_" ),
+           paste("Vihiga", rep("tomato", 7), sep = "_" )
+)
+
+hosts <- t(matrix(unlist(strsplit(hosts, "_")), 2))
+colnames(hosts) <- c("County", "Host")
+
+dat <- merge(metadata, hosts, by = "County")
+dim(dat)
