@@ -53,15 +53,16 @@ colnames(hosts) <- c("County", "Host")
 dat <- merge(metadata, hosts, by = "County")
 dim(dat)
 
+
 phylotypes <- c(
   #Baringo
 #Potato
   paste("Baringo", "potato", rep("phylotypeI", 9), sep = "_"),
   paste("Baringo", "potato", rep("phylotypeII", 1), sep = "_"),
-  paste("Baringo","potato", rep("NC", 3), sep = "_"),
+  paste("Baringo", "potato", rep("NC", 3), sep = "_"),
 #Tomato
   paste("Baringo", "tomato", rep("phylotypeI", 1), sep = "_"),
-  # paste("Baringo","tomato", rep("phylotypeII", 0), sep = "_"),
+ #paste("Baringo","tomato", rep("phylotypeII", 0), sep = "_"),
   paste("Baringo","tomato", rep("NC", 1), sep = "_"),
   #Bomet
 #Potato
@@ -126,8 +127,8 @@ paste("Nyeri", "potato", rep("phylotypeII", 30), sep = "_"),
 paste("Nyeri", "potato", rep("NC", 10), sep = "_"),
 #tomato
 # paste("Nyeri", "tomato", rep("phylotypeI", 0), sep = "_"),
-paste("tomato", rep("phylotypeII", 1), sep = "_"),
-paste("tomato", rep("NC", 1), sep = "_"),
+paste("Nyeri", "tomato", rep("phylotypeII", 1), sep = "_"),
+paste("Nyeri", "tomato", rep("NC", 1), sep = "_"),
   # Taita Taveta
 #pepper
 paste("Taita-Taveta", "pepper", rep("phylotypeI", 1), sep = "_"),
@@ -166,19 +167,19 @@ paste("Vihiga", "tomato", rep("phylotypeI", 5), sep = "_"),
 paste("Vihiga", "tomato", rep("NC", 2), sep = "_")
 )
 
-phylotypes <- as.data.frame(t(matrix(unlist(strsplit(phylotypes, "_")), 2)))
+phylotypes <- as.data.frame(t(matrix(unlist(strsplit(phylotypes, "_")), 3)))
 colnames(phylotypes) <- c("County","Host", "Phylotype")
 dim(phylotypes)
 head(phylotypes)
 
+phylotypes$HC <- paste(phylotypes$County, phylotypes$Host, sep = "-")
 # # Merging datasets
 # data <- cbind(dat, phylotypes$Phylotype)
 # data
 
-table(phylotypes$County, phylotypes$Phylotype)
-
-
-write.csv(data, "Ralstonia_solanacearum_data_table2_2021fromR.csv")
+phylotable <- table(phylotypes$HC, phylotypes$Phylotype)
+cbind(phylotable, rowSums(phylotable))
+# write.csv(data, "Ralstonia_solanacearum_data_table2_2021fromR.csv")
 
 
 
